@@ -8,20 +8,19 @@ import static javax.swing.BorderFactory.createTitledBorder;
 
 public class design extends JFrame {
 
-    public JTextField invoiceDate;
-    public JLabel myLbl ;
+    public JTextField invoiceDate,customerName;
+
+
 
     public design(){
-        JFrame frame = new JFrame();
-        frame.getContentPane();
-        frame.setTitle("Design Preview");
+        setTitle("Design Preview");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(null);
+        setLayout(null);
 
 
 
          //setting the bounds for the jFrame
-        frame.setBounds(50,50,1100,600);
+        setBounds(50,50,1100,600);
        //  Border br = BorderFactory.createLineBorder(Color.DARK_GRAY);
 
 
@@ -33,7 +32,7 @@ public class design extends JFrame {
         panel.setLayout(null);
         panel.setBounds(20,20,500,500);
         panel.setBackground(Color.CYAN);
-        frame.add(panel);
+        add(panel);
         panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),"invoice table",
                 TitledBorder.LEFT,TitledBorder.TOP));
 
@@ -73,7 +72,7 @@ public class design extends JFrame {
         panel1.setBackground(Color.BLUE);
         panel1.setBounds(530,20,500,500);
         panel1.setLayout(null);
-        frame.add(panel1);
+        add(panel1);
 
 
        JButton save =new JButton("save");
@@ -87,20 +86,21 @@ public class design extends JFrame {
         panel1.add(cancel);
 
         //invoice data
-     /*   JPanel invoiceData = new JPanel();
+       JPanel invoiceData = new JPanel();
         invoiceData.setBounds(20,20,470,150);
         invoiceData.setBackground(Color.GREEN);
-        invoiceData.setLayout(null);
+       invoiceData.setLayout(new FlowLayout(20));
         panel1.add(invoiceData);
-*/
 
-         invoiceDate = new JTextField("7/8/2022");
-         myLbl = new JLabel("invoice Date");
-       invoiceDate.setBounds(40,10,100,50);
-       myLbl.setLocation(20,10);
-       panel1.add(invoiceDate,myLbl);
-        //panel1.add(invoiceDate,BorderLayout.WEST);
-        //panel1.add(myLbl,BorderLayout.CENTER);
+       invoiceData.add(new JLabel("invoice Date"));
+        invoiceDate = new JTextField(30);
+        invoiceData.add(invoiceDate);
+
+        invoiceData.add(new JLabel("customer name"));
+        customerName = new JTextField(30);
+        invoiceData.add(customerName);
+
+
 
 
 
@@ -109,14 +109,14 @@ public class design extends JFrame {
 
 
 
-         frame.setVisible(true);
+
      }
 
 
 
     public static void main (String[] args){
 
-         new design();
+         new design().setVisible(true);;
      }
 
 }
