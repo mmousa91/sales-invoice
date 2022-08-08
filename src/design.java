@@ -4,7 +4,6 @@ import javax.swing.JMenuBar;
 import java.awt.*;
 
 
-import static javax.swing.BorderFactory.createTitledBorder;
 
 
 public class design extends JFrame {
@@ -186,7 +185,7 @@ public class design extends JFrame {
 
     public static void main (String[] args){
 
-         new design().setVisible(true);;
+         new design().setVisible(true);
      }
 
 }
