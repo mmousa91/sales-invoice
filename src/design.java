@@ -1,14 +1,21 @@
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-
+import javax.swing.JMenuBar;
 import java.awt.*;
+
 
 import static javax.swing.BorderFactory.createTitledBorder;
 
 
 public class design extends JFrame {
 
-    public JTextField invoiceDate,customerName;
+    public JTextField invoiceDate,customerName,invoicenum,invoiceTotal;
+    public JLabel jinvoicenum,jcustomername,jinvoicedate,jinvoicet;
+
+    public JMenuBar menuBar;
+    public JMenu fileMenu;
+    public JMenuItem loadFileItem;
+    public JMenuItem saveFileItem;
 
 
 
@@ -36,11 +43,23 @@ public class design extends JFrame {
         panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),"invoice table",
                 TitledBorder.LEFT,TitledBorder.TOP));
 
+     // create jmenu
+
+        menuBar = new JMenuBar();
+
+        fileMenu = new JMenu("file");
+        menuBar.add(fileMenu);
+        loadFileItem = new JMenuItem("load file");
+        saveFileItem = new JMenuItem("save file");
+        fileMenu.add(loadFileItem);
+        fileMenu.add(saveFileItem);
+        setJMenuBar(menuBar);
+
 
         //create table
         String[][] rec={
-                {"1","1/1/2022","hala","5000"},
-                {"2","15/1/2022","gogo","7000"}
+                {"","","",""},
+                {"","","",""}
 
         };
         String[] header ={"No","date","customer","total"};
@@ -59,6 +78,9 @@ public class design extends JFrame {
         create.setBackground(Color.LIGHT_GRAY);
         create.setBounds(70,450,150,40);
         panel.add(create);
+
+        MyListener l =new MyListener();
+        create.addActionListener(l);
 
          // create deleteButton
         JButton delete =new JButton("delete invoice");
@@ -89,16 +111,64 @@ public class design extends JFrame {
        JPanel invoiceData = new JPanel();
         invoiceData.setBounds(20,20,470,150);
         invoiceData.setBackground(Color.GREEN);
-       invoiceData.setLayout(new FlowLayout(20));
+      invoiceData.setLayout(null);
         panel1.add(invoiceData);
 
-       invoiceData.add(new JLabel("invoice Date"));
-        invoiceDate = new JTextField(30);
+        invoicenum = new JTextField(10);
+        invoicenum.setBounds(100,10,100,20);
+        invoicenum.setEditable(false);
+        invoiceData.add(invoicenum);
+
+        jinvoicenum= new JLabel("invoice num");
+       jinvoicenum.setBounds(10,3,100,50);
+       invoiceData.add(jinvoicenum);
+
+
+        invoiceDate = new JTextField(20);
+        invoiceDate.setBounds(100,40,200,20);
         invoiceData.add(invoiceDate);
 
-        invoiceData.add(new JLabel("customer name"));
-        customerName = new JTextField(30);
+        jinvoicedate = new JLabel("invoice date");
+        jinvoicedate.setBounds(10,30,100,50);
+        invoiceData.add(jinvoicedate);
+
+
+        customerName = new JTextField(20);
+        customerName.setBounds(100,70,200,20);
         invoiceData.add(customerName);
+
+        jcustomername = new JLabel("customer name ");
+        jcustomername.setBounds(10,55,100,50);
+        invoiceData.add(jcustomername);
+
+        invoiceTotal = new JTextField(10);
+        invoiceTotal.setBounds(100,100,100,20);
+        invoiceTotal.setEditable(false);
+        invoiceData.add(invoiceTotal);
+
+        jinvoicet= new JLabel("invoice Total");
+        jinvoicet.setBounds(10,85,100,50);
+        invoiceData.add(jinvoicet);
+
+
+        JPanel invoiceItem = new JPanel();
+        invoiceItem.setBounds(20,200,470,200);
+        invoiceItem.setBackground(Color.ORANGE);
+        invoiceItem.setLayout(null);
+        invoiceItem.setBorder(BorderFactory.createTitledBorder("invoice item"));
+        panel1.add(invoiceItem);
+
+        String[][] rec1={
+                {"1","mohamed","1000","1000","1000"},
+                {"2","gogo","1000","1000","1000"}
+
+        };
+        String[] header1 ={"No","Item Name","Item Price","Count"," Item total"};
+        JTable table1 = new JTable(rec1,header1);
+        //table1.setBounds(10,20,400,150);
+        JScrollPane sc1 = new JScrollPane(table1);
+       sc1.setBounds(20,20,420,150);
+        invoiceItem.add(sc1);
 
 
 
